@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="mithon.css">
+
+
+
+    <script>
+//        window.onload = random;
+        var image = new Array();
+        var M = 5;
+        for (var i = 0; i < M; i++) {
+            image[i] = (i + 1) + "조.JPG";
+        }
+
+        var member = new Array();
+        member[0] = "1614 이채원, 2119 홍이주, 2607 문소희";
+        member[1] = "1119 최유라, 2510 서휘원, 2517 이예본";
+        member[2] = "1202 김예빈, 2503 김민주, 2602 구지원";
+        member[3] = "1120 허주희, 2120 홍지선, 2216 이은주";
+        member[4] = "1117 진세린, 1514 이세영, 3118 한세빈";
+
+
+        var MAX = image.length;
+        var num = new Array();
+        var img;
+        var text;
+        var index = 0;
+
+       function random() {
+            for (var i = 0; i < MAX; i++) {
+                num[i] = Math.floor(Math.random() * MAX);
+                for (var j = 0; j < i; j++) {
+                    if (num[j] == num[i]) {
+                        i--;
+                    }
+                }
+            }
+            img = document.getElementById("img");
+            img.removeAttribute("onclick");
+            text = document.getElementById("text");
+            setImg();
+        }
+
+        function setImg() {
+            img.setAttribute("src", image[num[index % MAX]]);
+            text.innerHTML="<h3>"+((index%MAX)+1)+"번째 발표 조 : "+member[index%MAX]+"</h3>";
+        }
+
+        function left() {
+            if (index > 0) {
+                index--;
+                setImg();
+            }
+        }
+
+        function right() {
+            index++;
+            setImg();
+        }
+
+    </script>
+
+</head>
+<body bgcolor="#F7F7EE">
+    <div class="parent">
+        <div class="child">
+            <center>
+            <table cellpadding="0" cellspacing="0" width="80%">
+                <caption><img src="title.png" width="40%"></caption>
+                <tr>
+                    <td width="20%">
+                        <img src=left.png onclick="left()" width="100%">
+                       <!--
+                        <button onclick="left()" style="height:100%;width:100%;">g</button>
+-->
+                    </td>
+
+                    <td width="60%">
+                        <img id="img" src="load.png" alt="이미지 자리" width="100%" onclick="random()" class="face"/>
+                    </td>
+                    <td width="20%">
+                        <img src=right.png onclick="right()" width="100%">
+                        <!--
+                        <button onclick="right()" style="height:100%;width:100%;font-size:15pt;">g</button>
+-->
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <table width="55%" height="50px">
+                <tr>
+                    <td id="text" style="background-color: #FFCE51;
+    text-align: center;" ></td>
+                
+                </tr>
+            </table>
+                </center>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>
